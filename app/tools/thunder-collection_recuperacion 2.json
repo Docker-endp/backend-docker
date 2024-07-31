@@ -1,0 +1,81 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "recuperacion 2",
+    "collectionId": "f536ee20-5677-4668-8b9e-ecd588344975",
+    "dateExported": "2024-06-13T14:28:57.250Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "98a83053-c5e5-4d41-9196-c57e56d86474",
+            "colId": "f536ee20-5677-4668-8b9e-ecd588344975",
+            "containerId": "",
+            "name": "MOSTRAR",
+            "url": "localhost:3000/api/pc",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2024-06-13T12:32:25.348Z",
+            "modified": "2024-06-13T12:48:47.671Z",
+            "headers": []
+        },
+        {
+            "_id": "aecd3626-a84c-4d03-91c8-6adcb45e8d1c",
+            "colId": "f536ee20-5677-4668-8b9e-ecd588344975",
+            "containerId": "",
+            "name": "LISTAR",
+            "url": "localhost:3000/api/pc/4",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-06-13T12:32:34.604Z",
+            "modified": "2024-06-13T13:45:59.654Z",
+            "headers": []
+        },
+        {
+            "_id": "153a8673-5e82-41c4-ad26-b911f3bf16a2",
+            "colId": "f536ee20-5677-4668-8b9e-ecd588344975",
+            "containerId": "",
+            "name": "CREAR",
+            "url": "localhost:3000/api/pc",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2024-06-13T12:32:42.002Z",
+            "modified": "2024-06-13T14:05:48.600Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"marca\": \"szs\",\n  \"almacenamiento\": 123,\n  \"ram\": 21\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "9d96254b-4783-4d44-b17a-3e0a6435b46c",
+            "colId": "f536ee20-5677-4668-8b9e-ecd588344975",
+            "containerId": "",
+            "name": "MODIFICAR",
+            "url": "localhost:3000/api/pc/2",
+            "method": "PUT",
+            "sortNum": 40000,
+            "created": "2024-06-13T12:33:02.953Z",
+            "modified": "2024-06-13T14:27:34.744Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n\n  \n  \"ram\": 8,\n  \"almacenamiento\": 256,\n  \"marca\": \"DELL\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "f8686e99-b8ed-4048-a190-829c8811ab48",
+            "colId": "f536ee20-5677-4668-8b9e-ecd588344975",
+            "containerId": "",
+            "name": "ELIMINAR",
+            "url": "t:3000/api/pc/6",
+            "method": "DELETE",
+            "sortNum": 60000,
+            "created": "2024-06-13T12:34:18.391Z",
+            "modified": "2024-06-13T14:23:37.019Z",
+            "headers": []
+        }
+    ],
+    "ref": "gBzpRPl2LuKnrwJr152f-5-fwl7fROWj_DM5Hgtex2MazOPmQDtA1hU_-AfZoTi82-gF7uqVLen945BFB-VfmA"
+}

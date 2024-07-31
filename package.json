@@ -1,0 +1,42 @@
+{
+  "name": "backend-guachirongo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "doc": "jsdoc -c jsdoc.json",
+    "dev": "nodemon app/index.js --exec babel-node",
+    "build": "babel app --out-dir dist",
+    "start": "node dist/index.js",
+    "swaggerdev": "node ./app/tools/swagger.js",
+    "swagger": "node ./dist/tools/swagger.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/proyecto-final-Guachirongo/Backend.git"
+  },
+  "author": "Samuel Vélez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/proyecto-final-Guachirongo/Backend/issues"
+  },
+  "homepage": "https://github.com/proyecto-final-Guachirongo/Backend#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.10.0",
+    "swagger-autogen": "^2.23.7",
+    "swagger-ui-express": "^5.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.24.7",
+    "@babel/core": "^7.24.7",
+    "@babel/node": "^7.24.7",
+    "@babel/plugin-transform-runtime": "^7.24.7",
+    "@babel/preset-env": "^7.24.7",
+    "nodemon": "^3.1.4"
+  }
+}
