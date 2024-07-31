@@ -4,7 +4,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.mostrar = exports.modificar = exports.masVendido = exports.listar = exports.eliminar = exports.crear = void 0;
+exports.prodagotarse = exports.mostrar = exports.modificar = exports.masVendido = exports.listar = exports.eliminar = exports.crear = void 0;
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 var _mysqldb = require("../config/mysqldb");
@@ -127,7 +127,7 @@ var crear = exports.crear = /*#__PURE__*/function () {
 // ACTUALIZAR
 var modificar = exports.modificar = /*#__PURE__*/function () {
   var _ref4 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4(req, res) {
-    var ID, NOMBRE, IMAGEN, DESCRIPCION, PRECIO, CANT_INICIAL, STOCK, COMPRADOS, ID_PROVEEDORES, rest;
+    var ID, NOMBRE, IMAGEN, DESCRIPCION, PRECIO, CANT_INICIAL, COMPRADOS, ID_PROVEEDORES, rest, message;
     return _regenerator["default"].wrap(function _callee4$(_context4) {
       while (1) switch (_context4.prev = _context4.next) {
         case 0:
@@ -137,22 +137,20 @@ var modificar = exports.modificar = /*#__PURE__*/function () {
           DESCRIPCION = req.body.descripcion;
           PRECIO = req.body.precio;
           CANT_INICIAL = req.body.cant_inicial;
-          STOCK = req.body.stock;
           COMPRADOS = req.body.comprados;
           ID_PROVEEDORES = req.body.id_proveedores;
-          _context4.prev = 9;
-          _context4.next = 12;
-          return _mysqldb.pool.query("call SP_MODIFICARP('".concat(ID, "' ,'").concat(NOMBRE, "', '").concat(IMAGEN, "', '").concat(DESCRIPCION, "', '").concat(PRECIO, "', '").concat(CANT_INICIAL, "', '").concat(STOCK, "', '").concat(COMPRADOS, "', '").concat(ID_PROVEEDORES, "');"));
-        case 12:
+          _context4.prev = 8;
+          _context4.next = 11;
+          return _mysqldb.pool.query("call SP_MODIFICARP('".concat(ID, "' ,'").concat(NOMBRE, "', '").concat(IMAGEN, "', '").concat(DESCRIPCION, "', '").concat(PRECIO, "', '").concat(CANT_INICIAL, "', '").concat(COMPRADOS, "', '").concat(ID_PROVEEDORES, "');"));
+        case 11:
           rest = _context4.sent;
-          res.json({
-            "respuesta": rest
-          });
+          message = "Producto Modificado";
+          _mensajes["default"].success(req, res, message, 201);
           _context4.next = 19;
           break;
         case 16:
           _context4.prev = 16;
-          _context4.t0 = _context4["catch"](9);
+          _context4.t0 = _context4["catch"](8);
           res.json({
             "error": _context4.t0
           });
@@ -160,7 +158,7 @@ var modificar = exports.modificar = /*#__PURE__*/function () {
         case "end":
           return _context4.stop();
       }
-    }, _callee4, null, [[9, 16]]);
+    }, _callee4, null, [[8, 16]]);
   }));
   return function modificar(_x7, _x8) {
     return _ref4.apply(this, arguments);
@@ -235,5 +233,39 @@ var masVendido = exports.masVendido = /*#__PURE__*/function () {
   }));
   return function masVendido(_x11, _x12) {
     return _ref6.apply(this, arguments);
+  };
+}();
+
+// POR AGOTARSE
+var prodagotarse = exports.prodagotarse = /*#__PURE__*/function () {
+  var _ref7 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee7(req, res) {
+    var rest;
+    return _regenerator["default"].wrap(function _callee7$(_context7) {
+      while (1) switch (_context7.prev = _context7.next) {
+        case 0:
+          _context7.prev = 0;
+          _context7.next = 3;
+          return _mysqldb.pool.query("call SP_PRODUCTOS_A_COMPRAR();");
+        case 3:
+          rest = _context7.sent;
+          res.json({
+            "respuesta": rest[0][0]
+          });
+          _context7.next = 10;
+          break;
+        case 7:
+          _context7.prev = 7;
+          _context7.t0 = _context7["catch"](0);
+          res.json({
+            "eror": _context7.t0
+          });
+        case 10:
+        case "end":
+          return _context7.stop();
+      }
+    }, _callee7, null, [[0, 7]]);
+  }));
+  return function prodagotarse(_x13, _x14) {
+    return _ref7.apply(this, arguments);
   };
 }();

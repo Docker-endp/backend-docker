@@ -18,37 +18,56 @@ var _routes = _interopRequireDefault(require("../routes/routes.user"));
 // Mostrar Usuario
 var mostrarUser = exports.mostrarUser = /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(req, res) {
-    var id, rest;
+    var CORREO, rest;
     return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
-          id = req.params['id'];
-          _context.prev = 1;
-          _context.next = 4;
-          return _mysqldb.pool.query("call SP_MOSTRARU(".concat(id, ");"));
-        case 4:
+          CORREO = req.params['correo'];
+          console.log("Correo recibido: ".concat(CORREO));
+          _context.prev = 2;
+          _context.next = 5;
+          return _mysqldb.pool.query("call SP_MOSTRARU('".concat(CORREO, "');"));
+        case 5:
           rest = _context.sent;
-          res.json({
-            "respuesta": rest
-          });
-          _context.next = 11;
+          console.log("Resultado de la consulta:", rest);
+          if (rest && rest.length > 0) {
+            _mensajes["default"].success(req, res, rest, 201);
+          } else {
+            res.status(404).json({
+              "message": "No se encontraron resultados"
+            });
+          }
+          _context.next = 14;
           break;
-        case 8:
-          _context.prev = 8;
-          _context.t0 = _context["catch"](1);
+        case 10:
+          _context.prev = 10;
+          _context.t0 = _context["catch"](2);
+          console.error("Error en la consulta:", _context.t0);
           res.json({
             "error": _context.t0
           });
-        case 11:
+        case 14:
         case "end":
           return _context.stop();
       }
-    }, _callee, null, [[1, 8]]);
+    }, _callee, null, [[2, 10]]);
   }));
   return function mostrarUser(_x, _x2) {
     return _ref.apply(this, arguments);
   };
 }();
+
+// export const mostrarUser = async (req, res) => {
+//     let CORREO = req.params['correo'];
+
+//     try {
+//         const rest = await pool.query(`call SP_MOSTRARU('${CORREO}');`);
+//         response.success(req, res, rest, 201);
+
+//     } catch (error) {
+//         res.json({ "error": error })
+//     }
+// };
 
 // Listar Usuario
 var listarUser = exports.listarUser = /*#__PURE__*/function () {
@@ -138,42 +157,41 @@ var crearUser = exports.crearUser = /*#__PURE__*/function () {
 // Modificar Uusario
 var modificarUser = exports.modificarUser = /*#__PURE__*/function () {
   var _ref4 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4(req, res) {
-    var NOMBRE, APELLIDO, CORREO, DOCUMENTO, CLAVE, CLAVESINCIFRAR, CELULAR, hash, _CLAVE2, rest, message;
+    var NOMBRE, APELLIDO, CORREO, DOCUMENTO, CLAVESINCIFRAR, CELULAR, hash, CLAVE, rest, message;
     return _regenerator["default"].wrap(function _callee4$(_context4) {
       while (1) switch (_context4.prev = _context4.next) {
         case 0:
           NOMBRE = req.body.nombre;
           APELLIDO = req.body.apellido;
           CORREO = req.body.correo;
-          DOCUMENTO = req.body.documento;
-          CLAVE = req.body.clave;
+          DOCUMENTO = req.body.documento; // const CLAVE = req.body.clave;
           CLAVESINCIFRAR = req.body.clave;
           CELULAR = req.body.celular;
-          _context4.prev = 7;
-          _context4.next = 10;
+          _context4.prev = 6;
+          _context4.next = 9;
           return _bcrypt["default"].hash(CLAVESINCIFRAR, 5);
-        case 10:
+        case 9:
           hash = _context4.sent;
-          _CLAVE2 = hash;
-          _context4.next = 14;
-          return _mysqldb.pool.query("call SP_MODIFICARU('".concat(NOMBRE, "', '").concat(APELLIDO, "', '").concat(CORREO, "', '").concat(DOCUMENTO, "', '").concat(_CLAVE2, "', '").concat(CELULAR, "');"));
-        case 14:
+          CLAVE = hash;
+          _context4.next = 13;
+          return _mysqldb.pool.query("call SP_MODIFICARU('".concat(NOMBRE, "', '").concat(APELLIDO, "', '").concat(CORREO, "', '").concat(DOCUMENTO, "', '").concat(CLAVE, "', '").concat(CELULAR, "');"));
+        case 13:
           rest = _context4.sent;
           message = "Usuario Modificado";
           _mensajes["default"].success(req, res, message, 201);
-          _context4.next = 22;
+          _context4.next = 21;
           break;
-        case 19:
-          _context4.prev = 19;
-          _context4.t0 = _context4["catch"](7);
+        case 18:
+          _context4.prev = 18;
+          _context4.t0 = _context4["catch"](6);
           res.json({
             "error": _context4.t0
           });
-        case 22:
+        case 21:
         case "end":
           return _context4.stop();
       }
-    }, _callee4, null, [[7, 19]]);
+    }, _callee4, null, [[6, 18]]);
   }));
   return function modificarUser(_x7, _x8) {
     return _ref4.apply(this, arguments);
