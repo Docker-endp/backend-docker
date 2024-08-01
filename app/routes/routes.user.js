@@ -5,6 +5,7 @@ import { checkAuth } from "../services/security";
 
 const rutaUser = Router();
 
+
 rutaUser.get("/user/:correo", mostrarUser);
 rutaUser.get("/user", listarUser);
 rutaUser.post("/user", crearUser);
